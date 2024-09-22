@@ -1,16 +1,19 @@
 package analyzer
 
-import "code-cherish/core/models"
+import (
+	"code-cherish/core/models"
+	"errors"
+)
 
 type Analyzer interface {
-	Analyze(ast interface{}) []models.Issue
+	Analyze(ast interface{}) models.Analysis
 }
 
-func getAnalyzer(language string) Analyzer {
+func GetAnalyzer(language string) (Analyzer, error) {
 	switch language {
 	case "js":
-		return &JsAnalyzer{}
+		return &JsAnalyzer{}, nil
 	default:
-		return nil
+		return nil, errors.New(`not supported`)
 	}
 }

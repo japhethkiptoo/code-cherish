@@ -1,7 +1,7 @@
 package models
 
-type Issue struct {
-	Type        string
+type Suggestion struct {
 	Description string
+	Fix         string
 	Location    Location
 }
